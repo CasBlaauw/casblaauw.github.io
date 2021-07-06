@@ -24,7 +24,7 @@
   --bs-white: #fff;
   --bs-gray: #6c757d;
   --bs-gray-dark: #343a40;
-  --bs-primary: #70d0ff;
+  --bs-primary: #42b9f4;
   --bs-secondary: #6c757d;
   --bs-success: #198754;
   --bs-info: #0dcaf0;
@@ -6524,7 +6524,7 @@ textarea.form-control-lg {
 }
 
 .border-primary {
-  border-color: #70d0ff !important;
+  border-color: #42b9f4 !important;
 }
 
 .border-secondary {
@@ -7353,7 +7353,7 @@ textarea.form-control-lg {
 
 /* rtl:end:remove */
 .text-primary {
-  color: #70d0ff !important;
+  color: #42b9f4 !important;
 }
 
 .text-secondary {
@@ -7409,7 +7409,7 @@ textarea.form-control-lg {
 }
 
 .bg-primary {
-  background-color: #70d0ff !important;
+  background-color: #42b9f4 !important;
 }
 
 .bg-secondary {
