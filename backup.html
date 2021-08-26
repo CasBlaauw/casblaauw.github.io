@@ -278,12 +278,12 @@ $(document).ready(function () {
 <h2>A1 Get everything in place</h2>
 <p>To run the one-click route, download and unpack the executable <code>webex-archive</code> <a href="guide/webex-archive.zip">from here</a>. I recommend putting it in a separate folder, as all the backup files will be created at the same location as the program.</p>
 <p><img src="guide/simple_finder_exec.png" /></p>
-<p><strong>If the file looks like the picture below, or otherwise does not look like an executable or activate when you doubleclick it, check <a href="#a99-making-the-program-executable">step A99 at the end of route A</a> to fix this!</strong></p>
+<p><strong>If the file looks like the picture below, or otherwise does not look like an executable or activate when you open it, check <a href="#a99-making-the-program-executable">step A99 at the end of route A</a> to fix this!</strong></p>
 <p><img src="guide/simple_finder_nonexec.png" /></p>
 </div>
 <div id="a2-run-the-program" class="section level2">
 <h2>A2 Run the program</h2>
-<p>Doubleclick <code>webex-archive</code>. It will open a terminal screen, which takes a few seconds to get going past the first lines:</p>
+<p>Right-click <code>webex-archive</code> and click <em>open</em>. It will open a terminal screen, which takes a few seconds to get going past the first lines:</p>
 <p><img src="guide/simple_terminal_start.png" /></p>
 <p>But soon enough, it should prompt you for your PAT:</p>
 <p><img src="guide/simple_terminal_pat.png" /></p>
@@ -297,13 +297,13 @@ $(document).ready(function () {
 </div>
 <div id="a99-making-the-program-executable" class="section level2">
 <h2>A99 Making the program executable</h2>
-<p>If you cannot doubleclick the file to start it on your machine, the file’s permissions (an internal mac os system) might be limiting it. This is easily fixable:</p>
+<p>If you cannot open the file to start it on your machine, or if it’s not recognised as a program, the file’s permissions (an internal mac OS X system) might be limiting it. This is easily fixable:</p>
 <p>First, rightclick <strong>the folder</strong> that your file is in and select <em>New Terminal at Folder</em>:</p>
 <p><img src="guide/simple_finder_terminal.png" /></p>
 <p>In the terminal window that pops up, write <code>chmod +x webex-archive</code> and press enter:<br />
-(Remember that it’s a <strong>+</strong>, not a - like most command line arguments!)</p>
+(Remember that it’s a <strong>+</strong>, not a - like most command line arguments would have!)</p>
 <p><img src="guide/simple_terminal_exec.png" /></p>
-<p>Now check your file again. It should now look like an executable, and work if you doubleclick it:</p>
+<p>Now check your file again. It should now look like an executable, and work if you open it:</p>
 <p><img src="guide/simple_finder_exec.png" /></p>
 <p>Now, you can continue with <a href="#a2-run-the-program">step A2</a>. It should be smooth sailing from here on out!</p>
 <p>     </p>
