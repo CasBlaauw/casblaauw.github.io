@@ -241,7 +241,7 @@ $(document).ready(function () {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="/">Home</a>
+  <a href="index.html">Home</a>
 </li>
 <li>
   <a href="backup.html">Guide</a>
@@ -263,31 +263,56 @@ $(document).ready(function () {
 </div>
 
 
-<p>A quick explanation on how to backup webex, with pictures.</p>
-<div id="generate-a-pat" class="section level2">
-<h2>Generate a PAT</h2>
+<p>A quick explanation on how to backup webex, with pictures. There are two versions: <strong>an easy one-click version</strong> (which crucially does not require Python) and <strong>a Python script</strong>, which allows you to change some options yourself.</p>
+<p>The first step is always the same:</p>
+<div id="generate-a-pat" class="section level1">
+<h1>0. Generate a PAT</h1>
 <p>First, you’ll need to create a personal identification token. This is a way to tell the webex servers that yes, it’s actually you, without giving out your password or anything. Go to the <a href="https://developer.webex.com/docs/api/getting-started">webex developer site</a>, log in at the top right, and scroll down slightly to see a box containing your personal access token (but hidden):</p>
 <p><img src="guide/PAT.png" /></p>
 <p>Each token is valid for only 12 hours, so if you would like to backup again at some point after those 12 hours, you’ll have to generate a new token. To make sure you don’t lose it, you could quickly paste it in your notes or something, but you can always generate a new one if needed.</p>
 </div>
-<div id="get-everything-in-place" class="section level2">
-<h2>Get everything in place</h2>
-<p>Download the backup script, <code>webex-archive.py</code>, from webex. I’d recommend putting it in its own folder, as all the backup files will end up in the same place. Once you’ve got everything in place, right-click the folder that the script is in (<em>not</em> the file itself), and click <em>New Terminal at Folder</em>. That should look like this:</p>
-<p><img src="guide/finder_terminal.png" /></p>
+<div id="a-one-click-route" class="section level1">
+<h1>A: One-click route</h1>
+<div id="a1.-get-everything-in-place" class="section level2">
+<h2>A1. Get everything in place</h2>
+<p>To run the one-click route, download the executable <code>webex-archive</code> <a href="guide/webex-archive">here</a>. I recommend putting it in a separate folder, as all the backup files will be created in at the same location as the program.</p>
+<p><img src="guide/simple_folder.png" /></p>
 </div>
-<div id="run-the-script" class="section level2">
-<h2>Run the script</h2>
+<div id="a2.-run-the-program" class="section level2">
+<h2>A2. Run the program</h2>
+<p>Doubleclick <code>webex-archive</code>. It will open a terminal screen, which takes a few seconds to get going past the first lines:</p>
+<p><img src="guide/simple_terminal_start.png" /></p>
+<p>But soon enough, it should prompt you for your PAT:</p>
+<p><img src="guide/simple_terminal_pat.png" /></p>
+<p>Paste your PAT in there and press enter. Make sure there’s no extra spaces or anything. Soon enough, it should start running:</p>
+<p><img src="guide/simple_terminal_running.png" /></p>
+</div>
+<div id="a3.-look-at-your-results" class="section level2">
+<h2>A3. Look at your results</h2>
+<p>That’s it! You should see a bunch of folders, one for each private contact:</p>
+<p><img src="guide/simple_result_folders.png" /></p>
+</div>
+</div>
+<div id="b-python-route" class="section level1">
+<h1>B: Python route</h1>
+<div id="b1.-get-everything-in-place" class="section level2">
+<h2>B1. Get everything in place</h2>
+<p>Download the script, <a href="guide/webex-archive.py"><code>webex-archive.py</code></a>. I’d recommend putting it in its own folder, as all the backup files will end up in the same place. Once you’ve got everything in place, right-click the folder that the script is in (<em>not</em> the file itself), and click <em>New Terminal at Folder</em> (or just navigate to the folder in your terminal of choice). That should look like this:</p>
+<p><img src="guide/script_finder_terminal.png" /></p>
+</div>
+<div id="b2.-run-the-script" class="section level2">
+<h2>B2. Run the script</h2>
 <p>A terminal window should pop up, looking something like the screenshot below. In that window, type <code>python webex-archive.py [YOUR_PERSONAL_ACCESS_TOKEN_HERE]</code>, like this (I’ve censored out most of my PAT):</p>
-<p><img src="guide/terminal_command.png" /></p>
+<p><img src="guide/script_terminal_command.png" /></p>
 <p>Then press enter and you’re good to go! It should start backing up your one-on-one chats instantly and reporting its progress along the way.</p>
 </div>
-<div id="results" class="section level2">
-<h2>Results</h2>
+<div id="b3.-results" class="section level2">
+<h2>B3. Results</h2>
 <p>Hopefully, everything went okay and you now have a bunch of backups! The files are backed up into individual folders, with the <code>.html</code> file containing the actual messages inside the folder. Simply doubleclick the <code>.html</code> file to see your message history!</p>
-<p><img src="guide/result_folders.png" /></p>
+<p><img src="guide/script_result_folders.png" /></p>
 </div>
-<div id="optional-configs" class="section level2">
-<h2>Optional: configs</h2>
+<div id="b4.-optional-configs" class="section level2">
+<h2>B4. Optional: configs</h2>
 <p>The script should work right out of the box with no problems, backing up everything.<br />
 There are some things that can be configured based on personal preference, though, in the <code>configurations</code> section at the top of the script.<br />
 The most crucial is probably the option to swap around the message order so that it goes from new to old rather than old to new (the default). Other options mostly restrict the scope of the backup, if things take a long time or lots of disk space.<br />
@@ -302,6 +327,7 @@ Default is very high (999999), intended to backup everything. It’s possible (b
 Default is linking to the avatars, which retrieves them from webex online.<br />
 - <strong>Other outputs</strong>: You can optionally also get the chats as a txt and/or json file, alongside the html that’s always made.<br />
 Only creates html by default, should be enough (and is still <code>grep</code>-able, if needed).</p>
+</div>
 </div>
 
 
