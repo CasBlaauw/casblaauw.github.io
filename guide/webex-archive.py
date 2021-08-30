@@ -54,12 +54,12 @@ downloadAvatarCount = 1
 if getattr(sys, 'frozen', False):
     # Program is bundled into a single executable
     runDir = os.path.dirname(sys.executable)
-    print("Webex backup is being run in single-file executable mode")
+    print(f"Webex backup v{version} is being run in single-file executable mode")
     myToken = input("Please input your personal access token: ").strip()
 else:
     # Program is run as a python script
     runDir = os.path.dirname(os.path.abspath(__file__))
-    print("Webex backup is being run in python script mode")
+    print(f"Webex backup v{version} is being run in python script mode")
     if len(sys.argv) == 2:
         myToken = sys.argv[1]
     else:
@@ -711,7 +711,7 @@ if file_scope == '1':
 elif file_scope == '2':
     downloadFiles = 'files'
 
-# ===== PRINT PARAMETSR
+# ===== PRINT PARAMETERS
 if msgMaxAge == 0:
     maxMessageString = str(maxTotalMessages)
 else:

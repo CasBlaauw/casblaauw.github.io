@@ -271,32 +271,34 @@ $(document).ready(function () {
 <p><img src="guide/PAT.png" /></p>
 <p>Each token is valid for only 12 hours, so if you would like to backup again at some point after those 12 hours, you’ll have to generate a new token. To make sure you don’t lose it, you could quickly paste it in your notes or something, but you can always generate a new one if needed.</p>
 <p>     </p>
+<p>From here, follow the steps for <a href="#one-click-route-for-macs">Macs</a>, for <a href="#one-click-route-for-windows">Windows</a>, or using the <a href="#python-script-route">Python script</a>.</p>
+<p>     </p>
 </div>
-<div id="a-one-click-route" class="section level1">
-<h1>A: One-click route</h1>
-<div id="a1-get-everything-in-place" class="section level2">
-<h2>A1 Get everything in place</h2>
+<div id="one-click-route-for-macs" class="section level1">
+<h1>One-click route for Macs</h1>
+<div id="mac---1-get-everything-in-place" class="section level3">
+<h3>Mac - 1 Get everything in place</h3>
 <p>To run the one-click route, download and unpack the executable <code>webex-archive</code> <a href="guide/webex-archive.zip">from here</a>. I recommend putting it in a separate folder, as all the backup files will be created at the same location as the program.</p>
 <p><img src="guide/simple_finder_exec.png" /></p>
-<p><strong>If the file looks like the picture below, or otherwise does not look like an executable or activate when you open it, check <a href="#a99-making-the-program-executable">step A99 at the end of route A</a> to fix this!</strong></p>
+<p><strong>If the file looks like the picture below, or otherwise does not look like an executable or activate when you open it, check the <a href="#mac---making-the-program-executable">step at the end of the Mac route</a> to fix this!</strong></p>
 <p><img src="guide/simple_finder_nonexec.png" /></p>
 </div>
-<div id="a2-run-the-program" class="section level2">
-<h2>A2 Run the program</h2>
+<div id="mac---2-run-the-program" class="section level3">
+<h3>Mac - 2 Run the program</h3>
 <p>Right-click <code>webex-archive</code> and click <em>open</em>. It will open a terminal screen, which takes a few seconds to get going past the first lines:</p>
 <p><img src="guide/simple_terminal_start.png" /></p>
 <p>But soon enough, it should prompt you for your PAT:</p>
 <p><img src="guide/simple_terminal_pat.png" /></p>
-<p>Paste your PAT in there and press enter. Make sure there’s no extra spaces or anything. It should start running immediately:</p>
-<p><img src="guide/simple_terminal_running.png" /></p>
+<p>Paste your PAT in there and press enter. After this, it will ask whether you want to backup one-on-one conversations, group chats, or both. I would recommend both, just to be sure, although technically only one-on-one chats should be lost by the migration. Select your mode, press enter, and the backup should be on the way!</p>
+<p><img src="guide/simple_terminal_mode.png" /></p>
 </div>
-<div id="a3-look-at-your-results" class="section level2">
-<h2>A3 Look at your results</h2>
+<div id="mac---3-look-at-your-results" class="section level3">
+<h3>Mac - 3 Look at your results</h3>
 <p>That’s it! You should see a bunch of folders, one for each private contact. Just doubleclick the <code>.html</code> file to see the messages of that chat.</p>
 <p><img src="guide/simple_result_folders.png" /></p>
 </div>
-<div id="a99-making-the-program-executable" class="section level2">
-<h2>A99 Making the program executable</h2>
+<div id="mac---making-the-program-executable" class="section level3">
+<h3>Mac - Making the program executable</h3>
 <p>If you cannot open the file to start it on your machine, or if it’s not recognised as a program, the file’s permissions (an internal mac OS X system) might be limiting it. This is easily fixable:</p>
 <p>First, rightclick <strong>the folder</strong> that your file is in and select <em>New Terminal at Folder</em>:</p>
 <p><img src="guide/simple_finder_terminal.png" /></p>
@@ -305,32 +307,55 @@ $(document).ready(function () {
 <p><img src="guide/simple_terminal_exec.png" /></p>
 <p>Now check your file again. It should now look like an executable, and work if you open it:</p>
 <p><img src="guide/simple_finder_exec.png" /></p>
-<p>Now, you can continue with <a href="#a2-run-the-program">step A2</a>. It should be smooth sailing from here on out!</p>
+<p>Now, you can continue with <a href="#mac---2-run-the-program">step 2</a>. It should be smooth sailing from here on out!</p>
 <p>     </p>
 </div>
 </div>
-<div id="b-python-route" class="section level1">
-<h1>B: Python route</h1>
-<div id="b1-get-everything-in-place" class="section level2">
-<h2>B1 Get everything in place</h2>
+<div id="one-click-route-for-windows" class="section level1">
+<h1>One-click route for Windows</h1>
+<div id="windows---1-get-everything-in-place" class="section level3">
+<h3>Windows - 1 Get everything in place</h3>
+<p>To run the one-click route, download and unpack the executable <code>webex-archive</code> <a href="WINDOWS_PLACEHOLDER_PATH">from here</a>. I recommend putting it in a separate folder, as all the backup files will be created at the same location as the program.</p>
+<p>[picture of unpacked exe in folder]</p>
+</div>
+<div id="windows---2-run-the-program" class="section level3">
+<h3>Windows - 2 Run the program</h3>
+<p>Right-click <code>webex-archive</code> and click <em>open</em>. It will open a terminal screen, which takes a few seconds to get going past the first lines:</p>
+<p>[picture of program on windows]</p>
+<p>But soon enough, it should prompt you for your PAT:</p>
+<p>[picture of asking for pat]</p>
+<p>Paste your PAT in there and press enter. After this, it will ask whether you want to backup one-on-one conversations, group chats, or both. I would recommend both, just to be sure, although technically only one-on-one chats should be lost by the migration.</p>
+<p>[replace simple_terminal_running with new mode selection picture]</p>
+</div>
+<div id="windows---3-look-at-your-results" class="section level3">
+<h3>Windows - 3 Look at your results</h3>
+<p>That’s it! You should see a bunch of folders, one for each private contact. Just doubleclick the <code>.html</code> file to see the messages of that chat.</p>
+<p>[picture of results in folders]</p>
+<p>     </p>
+</div>
+</div>
+<div id="python-script-route" class="section level1">
+<h1>Python script route</h1>
+<div id="python---1-get-everything-in-place" class="section level2">
+<h2>Python - 1 Get everything in place</h2>
 <p>Download the script, <a href="guide/webex-archive.py"><code>webex-archive.py</code></a>. I’d recommend putting it in its own folder, as all the backup files will end up in the same place. Once you’ve got everything in place, right-click the folder that the script is in (<em>not</em> the file itself), and click <em>New Terminal at Folder</em> (or just navigate to the folder in your terminal of choice).<br />
 That should look like this:</p>
 <p><img src="guide/script_finder_terminal.png" /></p>
 </div>
-<div id="b2-run-the-script" class="section level2">
-<h2>B2 Run the script</h2>
+<div id="python---2-run-the-script" class="section level2">
+<h2>Python - 2 Run the script</h2>
 <p>A terminal window should pop up, looking something like the screenshot below. In that window, type <code>python3 webex-archive.py [YOUR_PERSONAL_ACCESS_TOKEN_HERE]</code>, like this:<br />
 (I wrote <code>python</code> and that worked for me, you might need <code>python3</code>.)</p>
 <p><img src="guide/script_terminal_command.png" /></p>
 <p>Then press enter and you’re good to go! It should start backing up your one-on-one chats instantly and reporting its progress along the way.</p>
 </div>
-<div id="b3-results" class="section level2">
-<h2>B3 Results</h2>
+<div id="python---3-results" class="section level2">
+<h2>Python - 3 Results</h2>
 <p>Hopefully, everything went okay and you now have a bunch of backups! The files are backed up into individual folders, with the <code>.html</code> file containing the actual messages inside the folder. Simply doubleclick the <code>.html</code> file to see your message history!</p>
 <p><img src="guide/script_result_folders.png" /></p>
 </div>
-<div id="b4-optional-configs" class="section level2">
-<h2>B4 Optional: configs</h2>
+<div id="python---4-optional-configs" class="section level2">
+<h2>Python - 4 Optional: configs</h2>
 <p>The script should work right out of the box with no problems, backing up everything.<br />
 There are some things that can be configured based on personal preference, though, in the <code>configurations</code> section at the top of the script.<br />
 The most crucial is probably the option to swap around the message order so that it goes from new to old rather than old to new (the default). Other options mostly restrict the scope of the backup, if things take a long time or lots of disk space.<br />
