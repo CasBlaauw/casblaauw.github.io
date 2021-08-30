@@ -75,7 +75,7 @@ Now check your file again. It should now look like an executable, and work if yo
 
 ![](guide/simple_finder_exec.png)
 
-Now, you can continue with [step 2](#mac---2-run-the-program). It should be smooth sailing from here on out!
+Now, you can go back to [step 2](#mac---2-run-the-program). It should be smooth sailing from here on out!
   
 \  
 \ 
@@ -86,30 +86,49 @@ Now, you can continue with [step 2](#mac---2-run-the-program). It should be smoo
 
 To run the one-click route, download and unpack the executable `webex-archive.exe` [from here](https://github.com/CasBlaauw/webex-backup/releases/download/latest/webex-archive-windows.exe). I recommend putting it in a separate folder, as all the backup files will be created at the same location as the program.
 
-[picture of unpacked exe in folder]
+![](guide/windows_folder.png)
 
 
 ### Windows - 2 Run the program
 
 Right-click `webex-archive.exe` and click *open*. You might get a popup by Windows SmartScreen, like this:
+
 ![](https://docs.microsoft.com/answers/storage/attachments/101216-windows10-smartscreenblocked1-e1577961749377.png)
+
 In that case, click 'More info', which should make a 'Run anyway' button appear.
 
 Once it's running, it will open a terminal screen, which might take a few seconds to get going.  
 Soon enough, though, it should prompt you for your PAT:
 
-[picture of asking for pat]
+![](guide/windows_terminal_pat.png)
 
-Paste your PAT in there and press enter. After this, it will ask whether you want to backup one-on-one conversations, group chats, or both. I would recommend both, just to be sure, although technically only one-on-one chats should be lost by the migration.
+Paste your PAT in there and press enter. After this, it will ask whether you want to backup one-on-one conversations, group chats, or both. I would recommend both, just to be sure, although technically only one-on-one chats should be lost by the migration. It will also ask if you want to download just pictures or all files. Depending on your messaging habits, all files can take quite a bit longer, but it does lead to a more complete backup. 
 
-[replace simple_terminal_running with new mode selection picture]
+**If your screen closes suddenly and unexpectedly, you might be running into an error. Follow [the step at the end of the Windows route](#windows---program-closing-unexpectedly) to see how you can see what is going wrong.**
+
+![](guide/windows_terminal_mode.png)
 
 ### Windows - 3 Look at your results
 
-That's it! You should see a bunch of folders, one for each private contact. Just doubleclick the `.html` file to see the messages of that chat.
+That's it! You should see a bunch of folders, one for each private contact. Just doubleclick the `.html` file in the folder to see the messages of that chat.
 
-[picture of results in folders]
-  
+![](guide/windows_result_folders.png)
+
+### Windows - program closing unexpectedly
+
+Due to the way Windows is, the entire program window instantly closes when the program runs into an error and stops.
+This is nice normally, but obviously makes it hard to see what the actual error is.  
+
+If you want to debug the program and see what could be going wrong, the key is to open it in a terminal-ish environment, like the command prompt or Windows PowerShell. An easy way to do this is as follows:  
+In the folder with `webex-archive-windows.exe`, click *File* at the top of the screen and select *Open Windows PowerShell*.
+
+![](guide/windows_powershell_explorer.png)
+
+Then run the program from there by typing `.\webex-archive-windows.exe` (or start typing 'webex' and press tab, it should autofinish). Now, you have the time to look at the error.
+
+![](guide/windows_powershell_error.png)
+
+
 \  
 \ 
 \  

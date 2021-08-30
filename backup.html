@@ -13,6 +13,7 @@
 
 <title>CM Webex backup guide</title>
 
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -278,7 +279,7 @@ $(document).ready(function () {
 <h1>One-click route for Macs</h1>
 <div id="mac---1-get-everything-in-place" class="section level3">
 <h3>Mac - 1 Get everything in place</h3>
-<p>To run the one-click route, download and unpack the executable <code>webex-archive</code> <a href="guide/webex-archive.zip">from here</a>. I recommend putting it in a separate folder, as all the backup files will be created at the same location as the program.</p>
+<p>To run the one-click route, download and unpack the executable <code>webex-archive</code> <a href="https://github.com/CasBlaauw/webex-backup/releases/download/latest/webex-archive-mac.zip">from here</a>. I recommend putting it in a separate folder, as all the backup files will be created at the same location as the program.</p>
 <p><img src="guide/simple_finder_exec.png" /></p>
 <p><strong>If the file looks like the picture below, or otherwise does not look like an executable or activate when you open it, check the <a href="#mac---making-the-program-executable">step at the end of the Mac route</a> to fix this!</strong></p>
 <p><img src="guide/simple_finder_nonexec.png" /></p>
@@ -307,7 +308,7 @@ $(document).ready(function () {
 <p><img src="guide/simple_terminal_exec.png" /></p>
 <p>Now check your file again. It should now look like an executable, and work if you open it:</p>
 <p><img src="guide/simple_finder_exec.png" /></p>
-<p>Now, you can continue with <a href="#mac---2-run-the-program">step 2</a>. It should be smooth sailing from here on out!</p>
+<p>Now, you can go back to <a href="#mac---2-run-the-program">step 2</a>. It should be smooth sailing from here on out!</p>
 <p>     </p>
 </div>
 </div>
@@ -315,22 +316,34 @@ $(document).ready(function () {
 <h1>One-click route for Windows</h1>
 <div id="windows---1-get-everything-in-place" class="section level3">
 <h3>Windows - 1 Get everything in place</h3>
-<p>To run the one-click route, download and unpack the executable <code>webex-archive</code> <a href="WINDOWS_PLACEHOLDER_PATH">from here</a>. I recommend putting it in a separate folder, as all the backup files will be created at the same location as the program.</p>
-<p>[picture of unpacked exe in folder]</p>
+<p>To run the one-click route, download and unpack the executable <code>webex-archive.exe</code> <a href="https://github.com/CasBlaauw/webex-backup/releases/download/latest/webex-archive-windows.exe">from here</a>. I recommend putting it in a separate folder, as all the backup files will be created at the same location as the program.</p>
+<p><img src="guide/windows_folder.png" /></p>
 </div>
 <div id="windows---2-run-the-program" class="section level3">
 <h3>Windows - 2 Run the program</h3>
-<p>Right-click <code>webex-archive</code> and click <em>open</em>. It will open a terminal screen, which takes a few seconds to get going past the first lines:</p>
-<p>[picture of program on windows]</p>
-<p>But soon enough, it should prompt you for your PAT:</p>
-<p>[picture of asking for pat]</p>
-<p>Paste your PAT in there and press enter. After this, it will ask whether you want to backup one-on-one conversations, group chats, or both. I would recommend both, just to be sure, although technically only one-on-one chats should be lost by the migration.</p>
-<p>[replace simple_terminal_running with new mode selection picture]</p>
+<p>Right-click <code>webex-archive.exe</code> and click <em>open</em>. You might get a popup by Windows SmartScreen, like this:</p>
+<p><img src="https://docs.microsoft.com/answers/storage/attachments/101216-windows10-smartscreenblocked1-e1577961749377.png" /></p>
+<p>In that case, click ‘More info’, which should make a ‘Run anyway’ button appear.</p>
+<p>Once it’s running, it will open a terminal screen, which might take a few seconds to get going.<br />
+Soon enough, though, it should prompt you for your PAT:</p>
+<p><img src="guide/windows_terminal_pat.png" /></p>
+<p>Paste your PAT in there and press enter. After this, it will ask whether you want to backup one-on-one conversations, group chats, or both. I would recommend both, just to be sure, although technically only one-on-one chats should be lost by the migration. It will also ask if you want to download just pictures or all files. Depending on your messaging habits, all files can take quite a bit longer, but it does lead to a more complete backup.</p>
+<p><strong>If your screen closes suddenly and unexpectedly, you might be running into an error. Follow <a href="#windows---program-closing-unexpectedly">the step at the end of the Windows route</a> to see how you can see what is going wrong.</strong></p>
+<p><img src="guide/windows_terminal_mode.png" /></p>
 </div>
 <div id="windows---3-look-at-your-results" class="section level3">
 <h3>Windows - 3 Look at your results</h3>
-<p>That’s it! You should see a bunch of folders, one for each private contact. Just doubleclick the <code>.html</code> file to see the messages of that chat.</p>
-<p>[picture of results in folders]</p>
+<p>That’s it! You should see a bunch of folders, one for each private contact. Just doubleclick the <code>.html</code> file in the folder to see the messages of that chat.</p>
+<p><img src="guide/windows_result_folders.png" /></p>
+</div>
+<div id="windows---program-closing-unexpectedly" class="section level3">
+<h3>Windows - program closing unexpectedly</h3>
+<p>Due to the way Windows is, the entire program window instantly closes when the program runs into an error and stops. This is nice normally, but obviously makes it hard to see what the actual error is.</p>
+<p>If you want to debug the program and see what could be going wrong, the key is to open it in a terminal-ish environment, like the command prompt or Windows PowerShell. An easy way to do this is as follows:<br />
+In the folder with <code>webex-archive-windows.exe</code>, click <em>File</em> at the top of the screen and select <em>Open Windows PowerShell</em>.</p>
+<p><img src="guide/windows_powershell_explorer.png" /></p>
+<p>Then run the program from there by typing <code>.\webex-archive-windows.exe</code> (or start typing ‘webex’ and press tab, it should autofinish). Now, you have the time to look at the error.</p>
+<p><img src="guide/windows_powershell_error.png" /></p>
 <p>     </p>
 </div>
 </div>
