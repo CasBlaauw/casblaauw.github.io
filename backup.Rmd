@@ -1,0 +1,155 @@
+---
+title: "CM Webex backup guide"
+---
+
+A quick explanation on how to backup webex, with pictures.
+There are two versions: **an easy one-click version** (which crucially does not require Python) and **a Python script**, which allows you to change some options yourself. 
+
+The first step is always the same:
+
+# 0. Generate a PAT
+First, you'll need to create a personal identification token. 
+This is a way to tell the webex servers that yes, it's actually you, without giving out your password or anything.
+Go to the [webex developer site](https://developer.webex.com/docs/api/getting-started), log in at the top right, and scroll down slightly to see a box containing your personal access token (but hidden):
+
+![](guide/PAT.png)
+
+Each token is valid for only 12 hours, so if you would like to backup again at some point after those 12 hours, you'll have to generate a new token. To make sure you don't lose it, you could quickly paste it in your notes or something, but you can always generate a new one if needed.
+
+\  
+\  
+\  
+
+From here, follow the steps for [Macs](#one-click-route-for-macs), for [Windows](#one-click-route-for-windows), or using the [Python script](#python-script-route).
+
+\  
+\  
+\  
+
+# One-click route for Macs
+
+### Mac - 1 Get everything in place
+
+To run the one-click route, download and unpack the executable `webex-archive` [from here](https://github.com/CasBlaauw/webex-backup/releases/download/latest/webex-archive-mac.zip). I recommend putting it in a separate folder, as all the backup files will be created at the same location as the program.
+
+![](guide/simple_finder_exec.png)
+
+**If the file looks like the picture below, or otherwise does not look like an executable or activate when you open it, check the [step at the end of the Mac route](#mac---making-the-program-executable) to fix this!**
+
+![](guide/simple_finder_nonexec.png)
+
+### Mac - 2 Run the program
+
+Right-click `webex-archive` and click *open*. It will open a terminal screen, which takes a few seconds to get going past the first lines:
+
+
+![](guide/simple_terminal_start.png)
+
+But soon enough, it should prompt you for your PAT:
+
+![](guide/simple_terminal_pat.png)
+
+Paste your PAT in there and press enter. After this, it will ask whether you want to backup one-on-one conversations, group chats, or both. I would recommend both, just to be sure, although technically only one-on-one chats should be lost by the migration. Select your mode, press enter, and the backup should be on the way!
+
+![](guide/simple_terminal_mode.png)
+
+### Mac - 3 Look at your results
+
+That's it! You should see a bunch of folders, one for each private contact. Just doubleclick the `.html` file to see the messages of that chat.
+
+![](guide/simple_result_folders.png)
+
+### Mac - Making the program executable
+If you cannot open the file to start it on your machine, or if it's not recognised as a program, the file's permissions (an internal mac OS X system) might be limiting it. This is easily fixable:
+
+First, rightclick **the folder** that your file is in and select *New Terminal at Folder*:
+
+![](guide/simple_finder_terminal.png)
+
+In the terminal window that pops up, write `chmod +x webex-archive` and press enter:  
+(Remember that it's a **+**, not a - like most command line arguments would have!)
+
+![](guide/simple_terminal_exec.png)
+
+Now check your file again. It should now look like an executable, and work if you open it:
+
+![](guide/simple_finder_exec.png)
+
+Now, you can continue with [step 2](#mac---2-run-the-program). It should be smooth sailing from here on out!
+  
+\  
+\ 
+\  
+
+# One-click route for Windows
+### Windows - 1 Get everything in place
+
+To run the one-click route, download and unpack the executable `webex-archive.exe` [from here](https://github.com/CasBlaauw/webex-backup/releases/download/latest/webex-archive-windows.exe). I recommend putting it in a separate folder, as all the backup files will be created at the same location as the program.
+
+[picture of unpacked exe in folder]
+
+
+### Windows - 2 Run the program
+
+Right-click `webex-archive.exe` and click *open*. You might get a popup by Windows SmartScreen, like this:
+![](https://docs.microsoft.com/answers/storage/attachments/101216-windows10-smartscreenblocked1-e1577961749377.png)
+In that case, click 'More info', which should make a 'Run anyway' button appear.
+
+Once it's running, it will open a terminal screen, which might take a few seconds to get going.  
+Soon enough, though, it should prompt you for your PAT:
+
+[picture of asking for pat]
+
+Paste your PAT in there and press enter. After this, it will ask whether you want to backup one-on-one conversations, group chats, or both. I would recommend both, just to be sure, although technically only one-on-one chats should be lost by the migration.
+
+[replace simple_terminal_running with new mode selection picture]
+
+### Windows - 3 Look at your results
+
+That's it! You should see a bunch of folders, one for each private contact. Just doubleclick the `.html` file to see the messages of that chat.
+
+[picture of results in folders]
+  
+\  
+\ 
+\  
+
+# Python script route
+
+## Python - 1 Get everything in place
+
+Download the script, [`webex-archive.py`](guide/webex-archive.py). I'd recommend putting it in its own folder, as all the backup files will end up in the same place. Once you've got everything in place, right-click the folder that the script is in (*not* the file itself), and click *New Terminal at Folder* (or just navigate to the folder in your terminal of choice).  
+That should look like this:
+
+![](guide/script_finder_terminal.png)
+
+
+## Python - 2 Run the script
+A terminal window should pop up, looking something like the screenshot below. In that window, type `python3 webex-archive.py [YOUR_PERSONAL_ACCESS_TOKEN_HERE]`, like this:  
+(I wrote `python` and that worked for me, you might need `python3`.)
+
+![](guide/script_terminal_command.png)
+
+Then press enter and you're good to go! It should start backing up your one-on-one chats instantly and reporting its progress along the way. 
+
+## Python - 3 Results
+Hopefully, everything went okay and you now have a bunch of backups! The files are backed up into individual folders, with the `.html` file containing the actual messages inside the folder. Simply doubleclick the `.html` file to see your message history!
+
+![](guide/script_result_folders.png)
+
+
+## Python - 4 Optional: configs
+The script should work right out of the box with no problems, backing up everything.  
+There are some things that can be configured based on personal preference, though, in the `configurations` section at the top of the script.  
+The most crucial is probably the option to swap around the message order so that it goes from new to old rather than old to new (the default). Other options mostly restrict the scope of the backup, if things take a long time or lots of disk space.   
+The options are clearly described in the script, but I'll quickly recap here:  
+- **Attachments**: download both files and images, only images, or no attachments?  
+   Default is `'files'`, which was fine for me, but my webex history is only ~1 year old. Moving to images does speed things up quite a lot already.  
+- **Sorting**: Show messages from old to new (so new at the bottom) or new to old (so new at the top)?  
+  Default is old-to-new (`False`). I haven't tested new-to-old, but it should work?  
+- **Max messages**: Maximum number of messages per chat to back up, either in amount or in days.  
+  Default is very high (999999), intended to backup everything. It's possible (but untested) to set a date limit, i.e. '60d'. Remember to pass a string instead of an integer in that case.  
+- **Avatars**: Download, link, or drop avatars?   
+  Default is linking to the avatars, which retrieves them from webex online.  
+- **Other outputs**: You can optionally also get the chats as a txt and/or json file, alongside the html that's always made.  
+  Only creates html by default, should be enough (and is still `grep`-able, if needed).   

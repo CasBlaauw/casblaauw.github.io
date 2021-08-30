@@ -1,0 +1,9 @@
+name: "webex-backup"
+output_dir: "."
+navbar:
+  title: "CM Webex backup guide"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Guide"
+      href: backup.html
