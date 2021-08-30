@@ -26,9 +26,9 @@ import shutil # for file-download with requests
 import math   # for converting bytes to KB/MB/GB
 import string
 try:
-    assert sys.version_info[0:2] >= (3, 6)
+    assert sys.version_info[0:2] >= (3, 9)
 except:
-    print("\n\n **ERROR** Minimum Python version is 3.6. Please visit this site to\n           install a newer Python version: https://www.python.org/downloads/ \n\n")
+    print("\n\n **ERROR** Minimum Python version is 3.9. Please visit this site to\n           install a newer Python version: https://www.python.org/downloads/ \n\n")
     exit()
 try:
     import requests
@@ -55,7 +55,7 @@ if getattr(sys, 'frozen', False):
     # Program is bundled into a single executable
     runDir = os.path.dirname(sys.executable)
     print("Webex backup is being run in single-file executable mode")
-    myToken = input("Please input your personal access token:")
+    myToken = input("Please input your personal access token: ").strip()
 else:
     # Program is run as a python script
     runDir = os.path.dirname(os.path.abspath(__file__))
@@ -63,7 +63,7 @@ else:
     if len(sys.argv) == 2:
         myToken = sys.argv[1]
     else:
-        myToken = input("Script has either none or too many arguments to detect PAT. Please input your personal access token here:")
+        myToken = input("Script has either none or too many arguments to detect PAT. Please input your personal access token here: ").strip()
 
 print("\n\n\n #0 ========================= START =========================")
 
@@ -533,6 +533,7 @@ def get_searchspaces(mytoken):
     headers = {'Authorization': 'Bearer ' + mytoken, 'content-type': 'application/json; charset=utf-8'}
     payload = {'sortBy': 'lastactivity', 'max': 900}
     chat_ids = dict()
+    group_ids = dict()
     all_spaces = list()
     while True:
         try:
@@ -567,9 +568,11 @@ def get_searchspaces(mytoken):
         try:
             if found_space['type'] == 'direct': # Manual change: keep spaces that are direct, i.e. one-to-one
                 chat_ids[found_space['title']] = found_space['id']
+            elif found_space['type'] == 'group':
+                group_ids[found_space['title']] = found_space['id']
         except:
             continue
-    return chat_ids
+    return chat_ids, group_ids
 
 
 # ----------------------------------------------------------------------------------------
@@ -627,13 +630,28 @@ def stopTimer(description):
 # ------------------------------------------------------------------------------ start process ----------------------------------------------------------------------
 
 # ===== GET SPACES
-chat_ids = get_searchspaces(myToken)
-print(str(len(chat_ids))+" chats found:")
+chat_ids, group_ids = get_searchspaces(myToken)
+print(f"Direct chats found: {len(chat_ids)}    Group chats found: {len(group_ids)} ")
 print(list(chat_ids.keys()))
 
+backup_scope = input("""Do you want to back up one-on-one chats only (1), group chats only (2) or both one-on-one and groups (3)?
+Please type a number: """).strip()
+if backup_scope not in ['1', '2', '3']:
+    print("Your input was not recognised as 1, 2 or 3. Please try again:")
+    backup_scope = input("""Do you want to back up one-on-one chats only (1), group chats only (2) or both one-on-one and groups (3)?
+    Please type a number: """).strip()
+if backup_scope == "1":
+    all_ids = chat_ids
+elif backup_scope == "2":
+    all_ids = group_ids
+elif backup_scope == "3":
+    all_ids = chat_ids | group_ids
+
+print('Backing up the following chats:')
+print(list(all_ids.keys()))
 
 # ------------------------------- start loop --------------------------------
-for name, id in chat_ids.items():
+for name, id in all_ids.items():
     myRoom = id
 
     # =====  GET SPACE NAME ========================================================
