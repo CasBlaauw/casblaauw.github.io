@@ -26,9 +26,9 @@ import shutil # for file-download with requests
 import math   # for converting bytes to KB/MB/GB
 import string
 try:
-    assert sys.version_info[0:2] >= (3, 9)
+    assert sys.version_info[0:2] >= (3, 6)
 except:
-    print("\n\n **ERROR** Minimum Python version is 3.9. Please visit this site to\n           install a newer Python version: https://www.python.org/downloads/ \n\n")
+    print("\n\n **ERROR** Minimum Python version is 3.6. Please visit this site to\n           install a newer Python version: https://www.python.org/downloads/ \n\n")
     exit()
 try:
     import requests
@@ -632,7 +632,6 @@ def stopTimer(description):
 # ===== GET SPACES
 chat_ids, group_ids = get_searchspaces(myToken)
 print(f"Direct chats found: {len(chat_ids)}    Group chats found: {len(group_ids)} ")
-print(list(chat_ids.keys()))
 
 backup_scope = input("""Do you want to back up one-on-one chats only (1), group chats only (2) or both one-on-one and groups (3)?
 Please type a number: """).strip()
@@ -645,7 +644,7 @@ if backup_scope == "1":
 elif backup_scope == "2":
     all_ids = group_ids
 elif backup_scope == "3":
-    all_ids = chat_ids | group_ids
+    all_ids = {**chat_ids, **group_ids}
 
 print('Backing up the following chats:')
 print(list(all_ids.keys()))
