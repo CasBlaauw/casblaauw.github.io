@@ -2,8 +2,8 @@
 title: "CM Webex backup guide"
 ---
 
-A quick explanation on how to backup webex, with pictures.
-There are two versions: **an easy one-click version** (which crucially does not require Python) and **a Python script**, which allows you to change some options yourself. 
+A quick explanation on how to backup webex, with pictures, using the [`webex-backup` tool](https://github.com/CasBlaauw/webex-backup/releases/tag/latest).
+There are two versions: **an easy one-click version** (for Mac and for Windows) and **a Python script**, which allows you to change some options yourself. 
 
 The first step is always the same:
 
@@ -137,7 +137,7 @@ Then run the program from there by typing `.\webex-archive-windows.exe` (or star
 
 ## Python - 1 Get everything in place
 
-Download the script, [`webex-archive.py`](guide/webex-archive.py). I'd recommend putting it in its own folder, as all the backup files will end up in the same place. Once you've got everything in place, right-click the folder that the script is in (*not* the file itself), and click *New Terminal at Folder* (or just navigate to the folder in your terminal of choice).  
+Download the script, [`webex-archive.py`](https://github.com/CasBlaauw/webex-backup/blob/main/webex-archive.py). I'd recommend putting it in its own folder, as all the backup files will end up in the same place. Once you've got everything in place, right-click the folder that the script is in (*not* the file itself), and click *New Terminal at Folder* (or just navigate to the folder in your terminal of choice).  
 That should look like this:
 
 ![](guide/script_finder_terminal.png)
