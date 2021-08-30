@@ -38,7 +38,7 @@ except ImportError:
 
 __author__ = "Cas Blaauw"
 __email__ = "cas@clinical-microbiomics.com"
-__version__ = "0.30"
+__version__ = "0.40"
 __copyright__ = "Copyright (c) 2019 Cisco and/or its affiliates."
 __license__ = "Cisco Sample Code License, Version 1.1"
 sleepTime = 3
@@ -64,8 +64,6 @@ else:
         myToken = sys.argv[1]
     else:
         myToken = input("Script has either none or too many arguments to detect PAT. Please input your personal access token here: ").strip()
-
-print("\n\n\n #0 ========================= START =========================")
 
 def beep(count): # PLAY SOUND (for errors)
     for x in range(0,count):
@@ -138,12 +136,7 @@ if outputToJson in ['txt', 'yes', 'both']:
 else:
     outputToText = False
 
-if msgMaxAge == 0:
-    maxMessageString = str(maxTotalMessages)
-else:
-    maxMessageString = str(msgMaxAge) + " days"
-print("    download:" + downloadFiles + " - Max messages:" + maxMessageString + " - Avatars: " + userAvatar)
-if len(goExitError) > 76:   
+if goExit:   
     print(goExitError + "\n ------------------------------------------------------------------\n\n")
     beep(3)
     exit()
@@ -480,6 +473,9 @@ def process_Files(fileData):
 def download_avatars(avatardictionary):
     global downloadAvatarCount
     global myErrorList
+    if len(avatardictionary) == 0:
+        print('No people found in avatardictionary. Skipping...')
+        return
     myErrorList = [ elem for elem in myErrorList if "def download_avatars download failed" not in elem]
     retryDictionary = dict()
     for key, value in avatardictionary.items():
@@ -527,8 +523,7 @@ def get_persondetails(mytoken, personlist):
 
 
 # ----------------------------------------------------------------------------------------
-# FUNCTION download ALL SPACES - when you call this script with a parameter, it will
-#          search all of your spaces and return spaces that match your search string
+# FUNCTION retrieve space IDs. Will search all of your spaces and return two dictionaries, separated into individual chats and group chats.
 def get_searchspaces(mytoken):
     headers = {'Authorization': 'Bearer ' + mytoken, 'content-type': 'application/json; charset=utf-8'}
     payload = {'sortBy': 'lastactivity', 'max': 900}
@@ -573,6 +568,56 @@ def get_searchspaces(mytoken):
         except:
             continue
     return chat_ids, group_ids
+
+# ----------------------------------------------------------------------------------------
+# FUNCTION that removes any empty spaces from a dictionary(possible if you only called but did not text)
+def check_empty_space(mytoken, myroom):
+    # clean_dict = dict()
+    # for name, id in space_dict.items():
+    #     headers = {'Authorization': 'Bearer ' + mytoken, 'content-type': 'application/json; charset=utf-8'}
+    #     payload = {'roomId': id, 'max': 10}
+    #     messageCount = 0
+    #     try:
+    #         result = requests.get('https://api.ciscospark.com/v1/messages', headers=headers, params=payload)
+    #         messageCount = len(result.json()["items"])
+    #     except requests.exceptions.RequestException as e: # A serious problem, like an SSLError or InvalidURL
+    #         print("          EXCEPT status_code: " + str(e.status_code))
+    #         print("          EXCEPT text: " + str(e.text))
+    #         print("          EXCEPT headers", e.headers)
+    #         if e.status_code == 429:
+    #             print("          Code 429, waiting for : " + str(sleepTime) + " seconds: ", end='', flush=True)
+    #             for x in range(0, sleepTime):
+    #                 time.sleep(1)
+    #                 print(".", end='', flush=True) # Progress indicator
+    #         else:
+    #             print("          EXCEPT ELSE e:" + e + " e.code:" + e.code)
+    #             break
+    #     if messageCount == 0:
+    #         print(f"{name} has no messages, removing from backup.")
+    #     else:
+    #         clean_dict[name] = id
+    # return clean_dict
+    headers = {'Authorization': 'Bearer ' + mytoken, 'content-type': 'application/json; charset=utf-8'}
+    payload = {'roomId': id, 'max': 10}
+    try:
+        result = requests.get('https://api.ciscospark.com/v1/messages', headers=headers, params=payload)
+        messageCount = len(result.json()["items"])
+    except requests.exceptions.RequestException as e: # A serious problem, like an SSLError or InvalidURL
+        print("          EXCEPT status_code: " + str(e.status_code))
+        print("          EXCEPT text: " + str(e.text))
+        print("          EXCEPT headers", e.headers)
+        if e.status_code == 429:
+            print("          Code 429, waiting for : " + str(sleepTime) + " seconds: ", end='', flush=True)
+            for x in range(0, sleepTime):
+                time.sleep(1)
+                print(".", end='', flush=True) # Progress indicator
+        else:
+            print("          EXCEPT ELSE e:" + e + " e.code:" + e.code)
+    if messageCount == 0:
+        print(f"{name} has no messages, removing from backup.")
+        return True
+    else:
+        return False
 
 
 # ----------------------------------------------------------------------------------------
@@ -633,12 +678,12 @@ def stopTimer(description):
 chat_ids, group_ids = get_searchspaces(myToken)
 print(f"Direct chats found: {len(chat_ids)}    Group chats found: {len(group_ids)} ")
 
-backup_scope = input("""Do you want to back up one-on-one chats only (1), group chats only (2) or both one-on-one and groups (3)?
-Please type a number: """).strip()
-if backup_scope not in ['1', '2', '3']:
+backup_scope_string = """\nDo you want to back up one-on-one chats only (1), group chats only (2) or both one-on-one and groups (3)?
+Please type a number: """
+backup_scope = input(backup_scope_string).strip()
+while backup_scope not in ['1', '2', '3']:
     print("Your input was not recognised as 1, 2 or 3. Please try again:")
-    backup_scope = input("""Do you want to back up one-on-one chats only (1), group chats only (2) or both one-on-one and groups (3)?
-    Please type a number: """).strip()
+    backup_scope = input(backup_scope_string).strip()
 if backup_scope == "1":
     all_ids = chat_ids
 elif backup_scope == "2":
@@ -646,12 +691,48 @@ elif backup_scope == "2":
 elif backup_scope == "3":
     all_ids = {**chat_ids, **group_ids}
 
+# all_ids = remove_empty_spaces(myToken, all_ids)
+
 print('Backing up the following chats:')
 print(list(all_ids.keys()))
 
+
+
+# ===== GET FILE SETTINGS
+file_scope_string = """\nDo you want to download only images (1) or all files (2)?
+If you are downloading all chats, I recommend images only (1) to speed up the process, but you can do a full backup with (2).
+Please type a number: """
+file_scope = input(file_scope_string).strip()
+while file_scope not in ['1', '2']:
+    print("Your input was not recognised as 1 or 2. Please try again:")
+    file_scope = input(file_scope_string).strip()
+if file_scope == '1':
+    downloadFiles = 'images'
+elif file_scope == '2':
+    downloadFiles = 'files'
+
+# ===== PRINT PARAMETSR
+if msgMaxAge == 0:
+    maxMessageString = str(maxTotalMessages)
+else:
+    maxMessageString = str(msgMaxAge) + " days"
+if sortOldNew:
+    sortOldNewString = 'Old to new'
+else:
+    sortOldNewString = 'New to old'
+
+print(f"""\n\n ----- PARAMETERS:
+Download: {downloadFiles} - Max messages: {maxMessageString} - Avatars: {userAvatar} - Sorting: {sortOldNewString} - extra output: {outputToJson}""")
+
+
 # ------------------------------- start loop --------------------------------
+print("\n\n #0 ========================= START =========================")
 for name, id in all_ids.items():
     myRoom = id
+
+    # =====  CHECK FOR EMPTY SPACES
+    if check_empty_space(myToken, myRoom):
+        continue
 
     # =====  GET SPACE NAME ========================================================
     #   used for the space name in the header and optionally the output foldername
@@ -753,24 +834,30 @@ for name, id in all_ids.items():
             chunksize = 80
         if y < 80:
             chunksize = y
-        for i in range(x,y,chunksize): # - LOOPING OVER MemberDataList
-            x=i
-            abc = get_persondetails(myToken, uniqueUserIds[x:x+chunksize])
-            print(".", end='', flush=True)  # Progress indicator
-            for persondetails in abc:
-                try:
-                    userAvatarDict[persondetails['id']] = persondetails['avatar'].replace("~1600","~80")
-                except:
-                    pass
+        try:
+            for i in range(x,y,chunksize): # - LOOPING OVER MemberDataList
+                x=i
+                abc = get_persondetails(myToken, uniqueUserIds[x:x+chunksize])
+                print(".", end='', flush=True)  # Progress indicator
+                for persondetails in abc:
+                    try:
+                        userAvatarDict[persondetails['id']] = persondetails['avatar'].replace("~1600","~80")
+                    except:
+                        pass
+        except:
+            pass
     stopTimer("get avatars")
     print("")
     startTimer()
-    if userAvatar == "link" or userAvatar == "download":
-        print(" #4c----- MEMBER Avatars: downloading avatar files for " + str(len(userAvatarDict)) + ")  ", end='', flush=True)
-        if userAvatar == "download":
-            download_avatars(userAvatarDict)
-            if downloadAvatarCount > 0:
-                print("")
+    try:
+        if userAvatar == "link" or userAvatar == "download":
+            print(" #4c----- MEMBER Avatars: downloading avatar files for " + str(len(userAvatarDict)) + ")  ", end='', flush=True)
+            if userAvatar == "download":
+                download_avatars(userAvatarDict)
+                if downloadAvatarCount > 0:
+                    print("")
+    except:
+        pass
     stopTimer("download avatars")
 
 
