@@ -49,7 +49,7 @@ But soon enough, it should prompt you for your PAT:
 
 ![](guide/simple_terminal_pat.png)
 
-Paste your PAT in there and press enter. After this, it will ask whether you want to backup one-on-one conversations, group chats, or both. I would recommend both, just to be sure, although technically only one-on-one chats should be lost by the migration. Select your mode, press enter, and the backup should be on the way!
+Paste your PAT in there and press enter. After this, it will ask whether you want to backup one-on-one conversations, group chats, or both. I would recommend both, just to be sure. Select your mode, press enter, and the backup should be on the way!
 
 ![](guide/simple_terminal_mode.png)
 
@@ -102,7 +102,7 @@ Soon enough, though, it should prompt you for your PAT:
 
 ![](guide/windows_terminal_pat.png)
 
-Paste your PAT in there and press enter. After this, it will ask whether you want to backup one-on-one conversations, group chats, or both. I would recommend both, just to be sure, although technically only one-on-one chats should be lost by the migration. It will also ask if you want to download just pictures or all files. Depending on your messaging habits, all files can take quite a bit longer, but it does lead to a more complete backup. 
+Paste your PAT in there and press enter. After this, it will ask whether you want to backup one-on-one conversations, group chats, or both. I would recommend both, just to be sure. It will also ask if you want to download just pictures or all files. Depending on your messaging habits, all files can take quite a bit longer, but it does lead to a more complete backup. 
 
 **If your screen closes suddenly and unexpectedly, you might be running into an error. Follow [the step at the end of the Windows route](#windows---program-closing-unexpectedly) to see how you can see what is going wrong.**
 
