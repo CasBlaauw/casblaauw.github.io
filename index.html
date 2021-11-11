@@ -49,16 +49,16 @@
                     </div>
                     <p class="lead">Hi! I'm Cas Blaauw, a bioinformatician currently studying the <a href="https://studies.ku.dk/masters/bioinformatics/" target="_blank"> MSc Bioinformatics at the University of Copenhagen</a> 
                         and working as a part-time bioinformatician at <a href="https://clinical-microbiomics.com" target="_blank">Clinical Microbiomics</a>. 
-                        At the moment, I'm a research intern with <a href="https://www.bric.ku.dk/research-groups/Research/won-group/">Kyoung Jae Won</a> working on spatial transcriptomics, 
-                        a research assistant with <a href="https://scholar.google.com/citations?user=MMYgK1oAAAAJ&hl" target="_blank">Hiren Joshi</a> and <a href="https://www.healthtech.dtu.dk/english/research/research-sections/section-bioinformatics/group-protein-sorting" target="_blank">Henrik Nielsen</a> working on representation learning,
+                        At the moment, I'm a research intern with <a href="https://www.bric.ku.dk/research-groups/Research/won-group/">Kyoung Jae Won</a> working on spatial transcriptomics tools, 
+                        a research assistant with <a href="https://scholar.google.com/citations?user=MMYgK1oAAAAJ&hl" target="_blank">Hiren Joshi</a> and <a href="https://www.healthtech.dtu.dk/english/research/research-sections/section-bioinformatics/group-protein-sorting" target="_blank">Henrik Nielsen</a> working on representation learning for glycosylation,
                         and I'm also the president of <a href="http://cbiovikings.org/" target="_blank">CBioVikings</a>, the Danish regional student group of the <a href="http://www.iscb.org/" target="_blank">ISCB</a>.
                     </p>
                     <hr>
                     <p class="intro">
-                        My main interest is understanding <b>how systems come together to form a greater whole</b>. These can range from subway systems to online communities, 
+                        My main interest is understanding <b>the underlying patterns in large-scale systems</b>. These can range from subway networks to online communities, 
                         but my primary focus is <b>understanding the molecular systems encoded by life's information</b>. 
                         <!-- whether you call that -omics, systems biology, biological machine learning, or something else. -->
-                        Examples I've investigated are the <a href="#dyna-qtls" style="color:inherit; text-decoration:none"><i>genomic systems behind transcription</i></a>, the <a href="#glyco-bert" style="color:inherit; text-decoration:none"><i>proteomic language of glycosylation</i></a>, and the <a href="#tissue-velo" style="color:inherit; text-decoration:none"><i>transcriptomic signature of cell-cell interactions</i></a>.
+                        Examples I've investigated are the <a href="#dyna-qtls" style="color:inherit; text-decoration:none"><i>genomic systems behind transcription</i></a>, the <a href="#glyco-bert" style="color:inherit; text-decoration:none"><i>proteomic language of glycosylation</i></a>, and the <a href="#tissue-velo" style="color:inherit; text-decoration:none"><i>transcriptomic signature of tissue interactions</i></a>.
                     </p>
                     
                     <p class="intro">
@@ -87,12 +87,12 @@
                     <h2 class="mb-5">Projects</h2>
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
-                            <h3 class="mb-0" id="tissue-velo">Incorporating cell-cell interactions in single-cell RNA velocity</h3>
+                            <h3 class="mb-0" id="tissue-velo">Incorporating tissue interactions in single-cell RNA velocity</h3>
                             <div class="subheading mb-2">University of Copenhagen - <a href="https://www.bric.ku.dk/research-groups/Research/won-group/" style="color:inherit" target="_blank">Won lab</a></div>
                             <p class="mb-1">
-                                Working on an approach to utilise information from cell type borders in spatial transcriptomics to build interaction-aware RNA velocities.
+                                Working on an approach to investigate the transcriptome dynamics of cells at the borders of different tissues, building interaction-aware RNA velocities from spatial transcriptomics data.
                             </p>
-                            <p><b>Topics:</b> spatial transcriptomics · RNA velocity | <b>Tools:</b> R · Seurat · scVelo</p>
+                            <p><b>Topics:</b> spatial transcriptomics · RNA velocity | <b>Tools:</b> R · Python · Seurat · scVelo | <b>Code:</b> <a href="https://github.com/CasBlaauw/InteractionVelocity" target="_blank" style="color:inherit">GitHub</a></p>
                         </div>
                         <div class="flex-shrink-0"><span class="text-primary">2021</span></div>
                     </div>
@@ -113,7 +113,8 @@
                             <div class="subheading mb-2">University of Copenhagen - <a href="https://scholar.google.com/citations?user=MMYgK1oAAAAJ&hl" style="color:inherit" target="_blank">Joshi lab</a> with <a href="https://www.healthtech.dtu.dk/english/research/research-sections/section-bioinformatics/group-protein-sorting" style="color:inherit" target="_blank">Nielsen lab</a> & <a href="https://olewinther.github.io/" style="color:inherit" target="_blank">Winther lab</a></a></div>
                             <p class="mb-1">
                                 Used BERT-based deep learning models from language modeling, trained on UniProt rather than Wikipedia, to distill protein sequences to their core grammatical context in the language of life. 
-                                Armed with the contextual representations for a variety of glycosylated sequences, I set out to figure out the rules behind O-GalNAc glycosylation, a biological process under complex multi-level regulation, by training a RNN. 
+                                Armed with the contextual representations for a variety of glycosylated sequences, I set out to figure out the rules behind O-GalNAc glycosylation, a biological process under complex multi-level regulation, by training a CNN. 
+                                Work presented as a poster at the Danish Bioinformatics Conference 2021.
                             </p>
                             <p><b>Topics:</b> deep learning · transfer learning | <b>Tools:</b> Python · PyTorch | <b>Code:</b> <a href="https://github.com/CasBlaauw/BertOGlyc" target="_blank" style="color:inherit">GitHub</a></p>
                         </div>
@@ -215,11 +216,9 @@
                     <h2 class="mb-4">About me</h2>
                     <h3 class="mb-3">Current interests</h3>
                     <p class="mb-3">
-                        Some of my major current interests are representation learning (like <a href="https://www.biorxiv.org/content/10.1101/2020.07.12.199554v3" target="_blank">BERTs for protein language</a>),
-                            single-cell transcriptome analysis (like <a href="https://www.biorxiv.org/content/10.1101/2021.08.13.456235v1" target="_blank">spatial transcriptomics</a>),
-                            and transcription regulation (like <a href="https://www.nature.com/articles/nature12772" target="_blank">dynamic eQTLs</a>). 
-                        These are topics that allow analysis of the molecular biological system as a whole, whether it's the genome, the transcriptome or the proteome, from a sequence perspective, which is something that really fascinates me.
-                        On a larger scale, I'm also keeping an eye on broader topics new privacy and AI regulations and EU-China policy.
+                        My overarching interest is encapsulating the complexity of (biological) systems. I love exploring and developing tools that allow analysis of the molecular biological system as a whole.
+                        Most recently, this has brought me to representation-based approaches, primarily in <a href="https://www.embopress.org/doi/full/10.15252/msb.202110282">transcriptomics</a> and <a href="https://www.biorxiv.org/content/10.1101/2020.07.12.199554v3" target="_blank">proteomics</a>.
+                        In a more general sense, I enjoy learning about how other fields (from NLP to GIS) approach 'data', and theorising about information more broadly.
                     </p>
                     <h3 class="mb-3">Academic background</h3>
                     <p>
@@ -260,18 +259,20 @@
                 </div>
             </section>
             <hr class="m-0" />
-            <!-- Awards -->
+            <!-- Publications and achievements -->
             <!-- <section class="resume-section" id="awards">
                 <div class="resume-section-content">
-                    <h2 class="mb-5">Awards</h2>
-                    <ul class="fa-ul mb-0">
+                    <h2 class="mb-5">Publications and achievements</h2>
+                    <h3>Posters</h3>
+                    <ul>
                         <li>
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            ICML 2021 Workshop in Computational Biology Fellowship
+                            Danish Bioinformatics Conference 2021: <i>Using protein language models for O-GalNAc protein glycosylation prediction</i>
                         </li>
+                    </ul>
+                    <h3>Awards</h3>
+                    <ul>
                         <li>
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            -
+                            ICML 2021 Workshop in Computational Biology Fellowship
                         </li>
                     </ul>
                 </div>
